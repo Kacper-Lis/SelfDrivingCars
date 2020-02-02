@@ -11,10 +11,12 @@ package selfdrivingcars;
  */
 public class Car
 {
+
     int[][] map = new int[SelfDrivingCars.row][SelfDrivingCars.column];
+
     public Car()
     {
-        
+
     }
-    
+
 }
