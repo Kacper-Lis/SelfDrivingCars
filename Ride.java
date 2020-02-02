@@ -9,7 +9,7 @@ package selfdrivingcars;
  *
  * @author poczt
  */
-public class Ride
+public class Ride implements Comparable<Ride>
 {
 
     int startPosX;
@@ -35,5 +35,11 @@ public class Ride
     public int getRideNum()
     {
         return rideNum;
+    }
+    
+    @Override
+    public int compareTo(Ride ride)
+    {
+        return (this.start - ride.start);
     }
 }

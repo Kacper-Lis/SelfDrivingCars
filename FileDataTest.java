@@ -2,8 +2,11 @@ package selfdrivingcars;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -31,21 +34,28 @@ public class FileDataTest
         int vehicleNum = fileData[0][2];
         int ridesNum = fileData[0][3];
         int rideBonus = fileData[0][4];
-        int steps = fileData[0][5];
+        int stepsNum = fileData[0][5];
 
         /* Stack needs to be sorted first here*/
-        
+        ArrayList<Ride> ridesArray = new ArrayList<>();
         //Assign stack stack of rides
-        for (int i = 1; i < rows; i++)
+        for (int i = 0; i < ridesNum; i++)
         {
-            int sX = fileData[i][0];
-            int sY = fileData[i][1];
-            int eX = fileData[i][2];
-            int eY = fileData[i][3];
-            int s = fileData[i][4];
-            int f = fileData[i][5];
-            int num = i - 1;
-            rides.push(new Ride(sX,sY,eX,eY,s,f,num));
+            int sX = fileData[i + 1][0];
+            int sY = fileData[i + 1][1];
+            int eX = fileData[i + 1][2];
+            int eY = fileData[i + 1][3];
+            int s = fileData[i + 1][4];
+            int f = fileData[i + 1][5];
+            int num = i;
+            ridesArray.add(new Ride(sX, sY, eX, eY, s, f, num));
+        }
+        
+        Collections.sort(ridesArray);
+        
+        for(Ride ride: ridesArray)
+        {
+            rides.push(ride);
         }
 
         Vehicle[] vehicles = new Vehicle[vehicleNum];
@@ -57,18 +67,26 @@ public class FileDataTest
         }
 
         //Start the loop
-        for (int i = 0; i < steps; i++)
+        for (int i = 0; i < stepsNum; i++)
         {
             for (Vehicle veh : vehicles)
             {
                 veh.changePos(i);
             }
         }
+        
+        PrintStream out = new PrintStream(new FileOutputStream("2.in"));
+        System.setOut(out);
+
+        for (int i = 0; i < vehicleNum; i++)
+        {
+            System.out.println(vehicles[i].getList());
+        }
     }
 
     private static int[][] getFileData() throws FileNotFoundException
     {
-        File file = new File("C:\\Users\\rwake\\OneDrive - Swansea University\\Google hash\\a_example.in");
+        File file = new File("C:\\Users\\poczt\\OneDrive\\Dokumenty\\NetBeansProjects\\SelfDrivingCars\\src\\selfdrivingcars\\b_should_be_easy.in");
         Scanner scanner = new Scanner(file);
 
         // Get data out of file
