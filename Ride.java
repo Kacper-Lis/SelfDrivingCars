@@ -31,6 +31,9 @@ public class Ride
         this.finish = finish;
         this.rideNum = rideNum;
     }
-    //asfdawafwa
 
+    public int getRideNum()
+    {
+        return rideNum;
+    }
 }
