@@ -9,12 +9,12 @@ package selfdrivingcars;
  *
  * @author poczt
  */
-public class Car
+public class Vehicle
 {
 
     int[][] map = new int[SelfDrivingCars.row][SelfDrivingCars.column];
 
-    public Car()
+    public Vehicle()
     {
 
     }
