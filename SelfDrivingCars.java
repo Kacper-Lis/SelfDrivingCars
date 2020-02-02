@@ -11,9 +11,10 @@ package selfdrivingcars;
  */
 public class SelfDrivingCars
 {
-    
+
     static int row = 0;
     static int column = 0;
+
     /**
      * @param args the command line arguments
      */
@@ -21,5 +22,5 @@ public class SelfDrivingCars
     {
         int[][] map = new int[row][column];
     }
-    
+
 }

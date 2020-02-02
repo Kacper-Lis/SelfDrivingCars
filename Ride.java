@@ -18,9 +18,10 @@ public class Ride
     int endPosY;
     int start;
     int finish;
+    int rideNum;
 
     public Ride(int startPosX, int startPosY,
-            int endPosX, int endPosY, int start, int finish)
+            int endPosX, int endPosY, int start, int finish, int rideNum)
     {
         this.startPosX = startPosX;
         this.startPosY = startPosY;
@@ -28,5 +29,7 @@ public class Ride
         this.endPosY = endPosY;
         this.start = start;
         this.finish = finish;
+        this.rideNum = rideNum;
     }
+
 }
