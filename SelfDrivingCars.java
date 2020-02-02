@@ -11,14 +11,14 @@ package selfdrivingcars;
  */
 public class SelfDrivingCars
 {
-
+    
+    static int row = 0;
+    static int column = 0;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args)
     {
-        int row = 0;
-        int column = 0;
         int[][] map = new int[row][column];
     }
     
