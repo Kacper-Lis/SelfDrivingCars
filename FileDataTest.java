@@ -51,8 +51,9 @@ public class FileDataTest
             ridesArray.add(new Ride(sX, sY, eX, eY, s, f, num));
         }
         
-        Collections.sort(ridesArray);
+        Collections.sort(ridesArray, Collections.reverseOrder());
         
+        //assigns rides to stack 
         for(Ride ride: ridesArray)
         {
             rides.push(ride);
@@ -75,6 +76,7 @@ public class FileDataTest
             }
         }
         
+        //Starts reading console to create output
         PrintStream out = new PrintStream(new FileOutputStream("2.in"));
         System.setOut(out);
 

@@ -29,6 +29,7 @@ public class Vehicle
         ridez = new ArrayList<>();
     }
 
+    //Returns array with numbers of the rides the car has taken for output
     public int[] ridesNum()
     {
         int[] ridesInt = new int[ridez.size()];
@@ -41,7 +42,7 @@ public class Vehicle
 
     public void changePos(int step)
     {
-        assignRide();
+        assignRide(step);
         if (currentRide != null)
         {
             if (earlyStart(step))
@@ -73,7 +74,7 @@ public class Vehicle
         }
     }
 
-    private void assignRide()
+    private void assignRide(int step)
     {
         if (currentRide == null && !FileDataTest.rides.empty())
         {
@@ -81,6 +82,12 @@ public class Vehicle
             ridez.add(currentRide);
             targetX = currentRide.startPosX;
             targetY = currentRide.startPosY;
+            if (Math.abs(x - targetX) + Math.abs(currentRide.startPosX - currentRide.endPosX)
+                    + Math.abs(y - targetY) + Math.abs(currentRide.startPosY - currentRide.endPosY) > currentRide.finish - step)
+            {
+                currentRide = null;
+                assignRide(step);
+            }
         }
     }
 
@@ -94,6 +101,7 @@ public class Vehicle
         return start;
     }
 
+    //Formats for output
     public String getList()
     {
         int count = 0;
