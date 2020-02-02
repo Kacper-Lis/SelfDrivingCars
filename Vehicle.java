@@ -17,6 +17,9 @@ public class Vehicle
     int[][] map = new int[SelfDrivingCars.row][SelfDrivingCars.column];
     int x;
     int y;
+    int targetPosX;
+    int targetPosY;
+    Ride currentRide;
     ArrayList<Ride> rides;
 
     public Vehicle()
@@ -36,9 +39,16 @@ public class Vehicle
         return ridesInt;
     }
 
-    public void changePos(int x, int y)
+    public void changePos(int step)
     {
-
+        assignRide();
     }
-
+    
+    private void assignRide()
+    {
+        if(currentRide != null)
+        {
+            currentRide = FileDataTest.rides.pop();
+        }
+    }
 }
