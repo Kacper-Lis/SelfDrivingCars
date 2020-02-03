@@ -37,15 +37,24 @@ public class Ride implements Comparable<Ride>
         return rideNum;
     }
 
+    public double distane()
+    {
+        return Math.sqrt(Math.pow(startPosX - endPosX, 2) + Math.pow(startPosY - endPosY, 2));
+    }
+
     @Override
     public int compareTo(Ride ride)
     {
+        
         double x1 = ride.startPosX;
-        double x2 = ride.endPosX;
         double y1 = ride.startPosY;
+        double x2 = ride.endPosX;
         double y2 = ride.endPosY;
         double dis1 = Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
         double dis2 = Math.sqrt(Math.pow(startPosX - endPosX, 2) + Math.pow(startPosY - endPosY, 2));
+         
+        //double dis1 = Math.sqrt(Math.pow(x1, 2) + Math.pow(y1, 2));
+        //double dis2 = Math.sqrt(Math.pow(startPosX, 2) + Math.pow(startPosY, 2));
         if(dis1 > dis2)
         {
             return 1;
@@ -55,5 +64,6 @@ public class Ride implements Comparable<Ride>
             return -1;
         }
         return 0;
+        
     }
 }

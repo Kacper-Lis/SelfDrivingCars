@@ -19,6 +19,12 @@ public class FileDataTest
 
     //Stack of rides
     public static Stack<Ride> rides = new Stack<>();
+    public static Stack<Ride> sp1 = new Stack<>();
+    public static Stack<Ride> sp2 = new Stack<>();
+    public static Stack<Ride> sp3 = new Stack<>();
+    public static Stack<Ride> sp4 = new Stack<>();
+    public static Stack<Ride> ssh = new Stack<>();
+    public static Stack<Ride> slg = new Stack<>();
 
     public static void main(String[] args) throws FileNotFoundException
     {
@@ -52,6 +58,54 @@ public class FileDataTest
             ridesArray.add(new Ride(sX, sY, eX, eY, s, f, num));
         }
 
+        /*
+        ArrayList<Ride> p1 = new ArrayList<>();
+        ArrayList<Ride> p2 = new ArrayList<>();
+        ArrayList<Ride> p3 = new ArrayList<>();
+        ArrayList<Ride> p4 = new ArrayList<>();
+
+        ArrayList<Ride> sh = new ArrayList<>();
+        ArrayList<Ride> lg = new ArrayList<>();
+
+        for (Ride ride : ridesArray)
+        {
+            //p1
+            if (ride.startPosX < 1000 && ride.startPosY < 1500 && ride.endPosX < 1000 && ride.endPosY < 1500)
+            {
+                p1.add(ride);
+            }
+            //p2
+            else if (ride.startPosX < 1000 && ride.startPosY > 1500 && ride.endPosX < 1000 && ride.endPosY > 1500)
+            {
+                p2.add(ride);
+            }
+            //p3
+            else if (ride.startPosX > 1000 && ride.startPosY < 1500 && ride.endPosX > 1000 && ride.endPosY < 1500)
+            {
+                p3.add(ride);
+            }
+            //p4
+            else if (ride.startPosX < 1000 && ride.startPosY < 1500 && ride.endPosX < 1000 && ride.endPosY < 1500)
+            {
+                p4.add(ride);
+            }
+            else if (ride.distane() < 200)
+            {
+                sh.add(ride);
+            }
+            else
+            {
+                lg.add(ride);
+            }
+        }
+
+        Collections.sort(p1, Collections.reverseOrder());
+        Collections.sort(p2, Collections.reverseOrder());
+        Collections.sort(p3, Collections.reverseOrder());
+        Collections.sort(sh, Collections.reverseOrder());
+        Collections.sort(lg, Collections.reverseOrder());
+        */
+        
         Collections.sort(ridesArray, Collections.reverseOrder());
 
         /*
@@ -60,8 +114,8 @@ public class FileDataTest
             @Override
             public int compare(Ride r1, Ride r2)
             {
-                double dis2 = Math.sqrt(Math.pow(r1.startPosX, 2) + Math.pow(r1.startPosY, 2));
-                double dis1 = Math.sqrt(Math.pow(r2.startPosX, 2) + Math.pow(r2.startPosY, 2));
+                double dis1 = Math.sqrt(Math.pow(r1.startPosX - 1500, 2) + Math.pow(r1.startPosY - 2250, 2));
+                double dis2 = Math.sqrt(Math.pow(r2.startPosX - 1500, 2) + Math.pow(r2.startPosY - 2250, 2));
                 if (dis1 > dis2)
                 {
                     return 1;
@@ -74,13 +128,28 @@ public class FileDataTest
             }
         });
         */
-        
-        //assigns rides to stack 
+         
+        //assigns rides to stack      
         for (Ride ride : ridesArray)
         {
             rides.push(ride);
         }
-
+        /*
+        for (Ride ride : lg)
+        {
+            rides.push(ride);
+        }
+        
+        for (Ride ride : p3)
+        {
+            rides.push(ride);
+        }
+        for (Ride ride : p1)
+        {
+            rides.push(ride);
+        }
+        */
+        
         Vehicle[] vehicles = new Vehicle[vehicleNum];
 
         //create all vehicles
@@ -98,6 +167,14 @@ public class FileDataTest
             }
         }
 
+        /*
+        System.out.println("p1: " + p1.size());
+        System.out.println("p2: " + p2.size());
+        System.out.println("p3: " + p3.size());
+        System.out.println("p4: " + p4.size());
+        System.out.println("sh: " + sh.size());
+        System.out.println("lg: " + lg.size());
+        */
         //Starts reading console to create output
         PrintStream out = new PrintStream(new FileOutputStream("3.in"));
         System.setOut(out);
