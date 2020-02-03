@@ -7,6 +7,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -50,11 +51,32 @@ public class FileDataTest
             int num = i;
             ridesArray.add(new Ride(sX, sY, eX, eY, s, f, num));
         }
-        
+
         Collections.sort(ridesArray, Collections.reverseOrder());
+
+        /*
+        Collections.sort(ridesArray, new Comparator<Ride>()
+        {
+            @Override
+            public int compare(Ride r1, Ride r2)
+            {
+                double dis2 = Math.sqrt(Math.pow(r1.startPosX, 2) + Math.pow(r1.startPosY, 2));
+                double dis1 = Math.sqrt(Math.pow(r2.startPosX, 2) + Math.pow(r2.startPosY, 2));
+                if (dis1 > dis2)
+                {
+                    return 1;
+                }
+                if (dis2 > dis1)
+                {
+                    return -1;
+                }
+                return 0;
+            }
+        });
+        */
         
         //assigns rides to stack 
-        for(Ride ride: ridesArray)
+        for (Ride ride : ridesArray)
         {
             rides.push(ride);
         }
@@ -75,9 +97,9 @@ public class FileDataTest
                 veh.changePos(i);
             }
         }
-        
+
         //Starts reading console to create output
-        PrintStream out = new PrintStream(new FileOutputStream("2.in"));
+        PrintStream out = new PrintStream(new FileOutputStream("3.in"));
         System.setOut(out);
 
         for (int i = 0; i < vehicleNum; i++)
@@ -88,7 +110,7 @@ public class FileDataTest
 
     private static int[][] getFileData() throws FileNotFoundException
     {
-        File file = new File("C:\\Users\\poczt\\OneDrive\\Dokumenty\\NetBeansProjects\\SelfDrivingCars\\src\\selfdrivingcars\\b_should_be_easy.in");
+        File file = new File("C:\\Users\\poczt\\OneDrive\\Dokumenty\\NetBeansProjects\\SelfDrivingCars\\src\\selfdrivingcars\\c_no_hurry.in");
         Scanner scanner = new Scanner(file);
 
         // Get data out of file
