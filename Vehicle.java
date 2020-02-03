@@ -6,6 +6,8 @@
 package selfdrivingcars;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
@@ -21,6 +23,7 @@ public class Vehicle
     int targetY;
     Ride currentRide = null;
     ArrayList<Ride> ridez;
+    ArrayList<Ride> rides;
 
     public Vehicle()
     {
@@ -74,6 +77,7 @@ public class Vehicle
         }
     }
 
+    /*
     private void assignRide(int step)
     {
         if (currentRide == null && !FileDataTest.rides.empty())
@@ -88,6 +92,46 @@ public class Vehicle
                 currentRide = null;
                 assignRide(step);
             }
+        }
+    }
+     */
+    private void assignRide(int step)
+    {
+        if (currentRide == null && !FileDataTest.ridesArray.isEmpty())
+        {
+            rides = new ArrayList<>();
+            for (Ride ride : FileDataTest.ridesArray)
+            {
+                rides.add(ride);
+            }
+
+            Collections.sort(rides, new Comparator<Ride>()
+            {
+                @Override
+                public int compare(Ride r1, Ride r2)
+                {
+                    double dis1 = Math.sqrt(Math.pow(r1.startPosX - x, 2) + Math.pow(r1.startPosY - y, 2));
+                    double dis2 = Math.sqrt(Math.pow(r2.startPosX - x, 2) + Math.pow(r2.startPosY - y, 2));
+                    if (dis1 > dis2)
+                    {
+                        return 1;
+                    }
+                    if (dis2 > dis1)
+                    {
+                        return -1;
+                    }
+                    return 0;
+                }
+            });
+            currentRide = rides.get(0);
+            FileDataTest.ridesArray.remove(currentRide);
+            if (Math.abs(x - targetX) + Math.abs(currentRide.startPosX - currentRide.endPosX)
+                    + Math.abs(y - targetY) + Math.abs(currentRide.startPosY - currentRide.endPosY) > currentRide.finish - step)
+            {
+                currentRide = null;
+                assignRide(step);
+            }
+            ridez.add(currentRide);
         }
     }
 

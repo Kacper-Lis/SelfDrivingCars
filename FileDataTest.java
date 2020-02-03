@@ -25,6 +25,8 @@ public class FileDataTest
     public static Stack<Ride> sp4 = new Stack<>();
     public static Stack<Ride> ssh = new Stack<>();
     public static Stack<Ride> slg = new Stack<>();
+    
+    public static ArrayList<Ride> ridesArray = new ArrayList<>();
 
     public static void main(String[] args) throws FileNotFoundException
     {
@@ -44,7 +46,7 @@ public class FileDataTest
         int stepsNum = fileData[0][5];
 
         /* Stack needs to be sorted first here*/
-        ArrayList<Ride> ridesArray = new ArrayList<>();
+        
         //Assign stack stack of rides
         for (int i = 0; i < ridesNum; i++)
         {
@@ -176,7 +178,7 @@ public class FileDataTest
         System.out.println("lg: " + lg.size());
         */
         //Starts reading console to create output
-        PrintStream out = new PrintStream(new FileOutputStream("3.in"));
+        PrintStream out = new PrintStream(new FileOutputStream("5.in"));
         System.setOut(out);
 
         for (int i = 0; i < vehicleNum; i++)
@@ -187,7 +189,7 @@ public class FileDataTest
 
     private static int[][] getFileData() throws FileNotFoundException
     {
-        File file = new File("C:\\Users\\poczt\\OneDrive\\Dokumenty\\NetBeansProjects\\SelfDrivingCars\\src\\selfdrivingcars\\c_no_hurry.in");
+        File file = new File("C:\\Users\\poczt\\OneDrive\\Dokumenty\\NetBeansProjects\\SelfDrivingCars\\src\\selfdrivingcars\\e_high_bonus.in");
         Scanner scanner = new Scanner(file);
 
         // Get data out of file
