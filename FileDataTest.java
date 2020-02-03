@@ -77,7 +77,7 @@ public class FileDataTest
         }
         
         //Starts reading console to create output
-        PrintStream out = new PrintStream(new FileOutputStream("2.in"));
+        PrintStream out = new PrintStream(new FileOutputStream("3.in"));
         System.setOut(out);
 
         for (int i = 0; i < vehicleNum; i++)
@@ -88,7 +88,7 @@ public class FileDataTest
 
     private static int[][] getFileData() throws FileNotFoundException
     {
-        File file = new File("C:\\Users\\poczt\\OneDrive\\Dokumenty\\NetBeansProjects\\SelfDrivingCars\\src\\selfdrivingcars\\b_should_be_easy.in");
+        File file = new File("C:\\Users\\poczt\\OneDrive\\Dokumenty\\NetBeansProjects\\SelfDrivingCars\\src\\selfdrivingcars\\c_no_hurry.in");
         Scanner scanner = new Scanner(file);
 
         // Get data out of file

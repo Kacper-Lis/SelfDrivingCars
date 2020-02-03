@@ -85,6 +85,7 @@ public class Vehicle
             if (Math.abs(x - targetX) + Math.abs(currentRide.startPosX - currentRide.endPosX)
                     + Math.abs(y - targetY) + Math.abs(currentRide.startPosY - currentRide.endPosY) > currentRide.finish - step)
             {
+                ridez.remove(currentRide);
                 currentRide = null;
                 assignRide(step);
             }
