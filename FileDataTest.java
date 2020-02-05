@@ -25,7 +25,7 @@ public class FileDataTest
     public static Stack<Ride> sp4 = new Stack<>();
     public static Stack<Ride> ssh = new Stack<>();
     public static Stack<Ride> slg = new Stack<>();
-    
+
     public static ArrayList<Ride> ridesArray = new ArrayList<>();
 
     public static void main(String[] args) throws FileNotFoundException
@@ -46,7 +46,6 @@ public class FileDataTest
         int stepsNum = fileData[0][5];
 
         /* Stack needs to be sorted first here*/
-        
         //Assign stack stack of rides
         for (int i = 0; i < ridesNum; i++)
         {
@@ -106,9 +105,8 @@ public class FileDataTest
         Collections.sort(p3, Collections.reverseOrder());
         Collections.sort(sh, Collections.reverseOrder());
         Collections.sort(lg, Collections.reverseOrder());
-        */
-        
-        Collections.sort(ridesArray, Collections.reverseOrder());
+         */
+        Collections.sort(ridesArray); //Collections.reverseOrder());
 
         /*
         Collections.sort(ridesArray, new Comparator<Ride>()
@@ -129,8 +127,7 @@ public class FileDataTest
                 return 0;
             }
         });
-        */
-         
+         */
         //assigns rides to stack      
         for (Ride ride : ridesArray)
         {
@@ -150,8 +147,8 @@ public class FileDataTest
         {
             rides.push(ride);
         }
-        */
-        
+         */
+
         Vehicle[] vehicles = new Vehicle[vehicleNum];
 
         //create all vehicles
@@ -159,7 +156,7 @@ public class FileDataTest
         {
             vehicles[i] = new Vehicle();
         }
-
+        
         //Start the loop
         for (int i = 0; i < stepsNum; i++)
         {
@@ -168,7 +165,6 @@ public class FileDataTest
                 veh.changePos(i);
             }
         }
-
         /*
         System.out.println("p1: " + p1.size());
         System.out.println("p2: " + p2.size());
@@ -176,9 +172,9 @@ public class FileDataTest
         System.out.println("p4: " + p4.size());
         System.out.println("sh: " + sh.size());
         System.out.println("lg: " + lg.size());
-        */
+         */
         //Starts reading console to create output
-        PrintStream out = new PrintStream(new FileOutputStream("5.in"));
+        PrintStream out = new PrintStream(new FileOutputStream("3.in"));
         System.setOut(out);
 
         for (int i = 0; i < vehicleNum; i++)
@@ -189,7 +185,7 @@ public class FileDataTest
 
     private static int[][] getFileData() throws FileNotFoundException
     {
-        File file = new File("C:\\Users\\poczt\\OneDrive\\Dokumenty\\NetBeansProjects\\SelfDrivingCars\\src\\selfdrivingcars\\e_high_bonus.in");
+        File file = new File("C:\\Users\\poczt\\OneDrive\\Dokumenty\\NetBeansProjects\\SelfDrivingCars\\src\\selfdrivingcars\\c_no_hurry.in");
         Scanner scanner = new Scanner(file);
 
         // Get data out of file

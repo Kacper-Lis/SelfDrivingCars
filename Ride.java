@@ -41,7 +41,7 @@ public class Ride implements Comparable<Ride>
     {
         return Math.sqrt(Math.pow(startPosX - endPosX, 2) + Math.pow(startPosY - endPosY, 2));
     }
-
+    
     @Override
     public int compareTo(Ride ride)
     {
@@ -54,7 +54,7 @@ public class Ride implements Comparable<Ride>
         double dis2 = Math.sqrt(Math.pow(startPosX - endPosX, 2) + Math.pow(startPosY - endPosY, 2));
 
         //double dis1 = Math.sqrt(Math.pow(x1, 2) + Math.pow(y1, 2));
-        //double dis2 = Math.sqrt(Math.pow(startPosX, 2) + Math.pow(startPosY, 2));
+        //
         if (dis1 > dis2)
         {
             return 1;
@@ -66,5 +66,17 @@ public class Ride implements Comparable<Ride>
         return 0;
 
     }
-
+    
+    /*
+    @Override
+    public int compareTo(Ride ride)
+    {
+        return this.start - ride.start;
+    }
+    */
+   
+    public String sortF()
+    {
+        return "" + Math.sqrt(Math.pow(startPosX - endPosX, 2) + Math.pow(startPosY - endPosY, 2));
+    }
 }

@@ -6,8 +6,6 @@
 package selfdrivingcars;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 /**
  *
@@ -24,6 +22,9 @@ public class Vehicle
     Ride currentRide = null;
     ArrayList<Ride> ridez;
     ArrayList<Ride> rides;
+    boolean canStart;
+
+    static int count = 0;
 
     public Vehicle()
     {
@@ -48,33 +49,39 @@ public class Vehicle
         assignRide(step);
         if (currentRide != null)
         {
-            if (earlyStart(step))
+            if (currentRide.start >= step)
             {
                 targetX = currentRide.endPosX;
                 targetY = currentRide.endPosY;
             }
-
-            if (x > targetX)
-            {
-                x--;
-            }
-            else if (x < targetX)
-            {
-                x++;
-            }
-            if (y > targetY)
-            {
-                y--;
-            }
-            else if (y < targetY)
-            {
-                y++;
-            }
-            if (x == currentRide.endPosX && y == currentRide.endPosY)
+            if (x == targetX && y == targetY)
             {
                 currentRide = null;
+                changePos(step);
             }
+            else
+            {
+
+                if (x > targetX)
+                {
+                    x--;
+                }
+                else if (x < targetX)
+                {
+                    x++;
+                }
+                if (y > targetY)
+                {
+                    y--;
+                }
+                else if (y < targetY)
+                {
+                    y++;
+                }
+            }
+
         }
+
     }
 
     /*
@@ -89,6 +96,7 @@ public class Vehicle
             if (Math.abs(x - targetX) + Math.abs(currentRide.startPosX - currentRide.endPosX)
                     + Math.abs(y - targetY) + Math.abs(currentRide.startPosY - currentRide.endPosY) > currentRide.finish - step)
             {
+                ridez.remove(currentRide);
                 currentRide = null;
                 assignRide(step);
             }
@@ -99,12 +107,17 @@ public class Vehicle
     {
         if (currentRide == null && !FileDataTest.ridesArray.isEmpty())
         {
+            /*
+            count++;
+            System.out.println(count);
+             */
+ /*
             rides = new ArrayList<>();
             for (Ride ride : FileDataTest.ridesArray)
             {
                 rides.add(ride);
             }
-
+            
             Collections.sort(rides, new Comparator<Ride>()
             {
                 @Override
@@ -123,37 +136,66 @@ public class Vehicle
                     return 0;
                 }
             });
-            currentRide = rides.get(0);
-            FileDataTest.ridesArray.remove(currentRide);
+             */
+            currentRide = FileDataTest.ridesArray.get(0);
+            double dis = Math.sqrt(Math.pow(x - currentRide.startPosX, 2) + Math.pow(y - currentRide.startPosY, 2));
+            double temp = dis;
+            if (FileDataTest.ridesArray.size() > 100)
+            {
+                for (int i = 0; i < 100; i++)
+                {
+                    Ride ride = FileDataTest.ridesArray.get(i);
+                    dis = Math.sqrt(Math.pow(x - ride.startPosX, 2) + Math.pow(y - ride.startPosY, 2));
+                    if (Math.abs(x - ride.startPosX) + Math.abs(ride.startPosX - ride.endPosX)
+                            + Math.abs(y - ride.startPosY) + Math.abs(ride.startPosY - ride.endPosY) < ride.finish - step && dis < temp)
+                    {
+                        currentRide = ride;
+                        temp = dis;
+                    }
+                }
+            }
+            else
+            {
+                for (Ride ride : FileDataTest.ridesArray)
+                {
+                    dis = Math.sqrt(Math.pow(x - ride.startPosX, 2) + Math.pow(y - ride.startPosY, 2));
+                    if (Math.abs(x - ride.startPosX) + Math.abs(ride.startPosX - ride.endPosX)
+                            + Math.abs(y - ride.startPosY) + Math.abs(ride.startPosY - ride.endPosY) < ride.finish - step && dis < temp)
+                    {
+                        currentRide = ride;
+                        temp = dis;
+                    }
+                }
+            }
+            /*
             if (Math.abs(x - targetX) + Math.abs(currentRide.startPosX - currentRide.endPosX)
                     + Math.abs(y - targetY) + Math.abs(currentRide.startPosY - currentRide.endPosY) > currentRide.finish - step)
             {
+                ridez.remove(currentRide);
                 currentRide = null;
                 assignRide(step);
             }
+             */
             ridez.add(currentRide);
+            FileDataTest.ridesArray.remove(currentRide);
+
         }
     }
 
     private boolean earlyStart(int steps)
     {
-        boolean start = false;
-        if (currentRide.start >= steps)
-        {
-            start = true;
-        }
-        return start;
+        return currentRide.start >= steps;
     }
 
     //Formats for output
     public String getList()
     {
-        int count = 0;
+        int c = 0;
         for (Ride ride : ridez)
         {
-            count++;
+            c++;
         }
-        String ret = "" + count;
+        String ret = "" + c;
         for (int ride : ridesNum())
         {
             ret += " " + ride;
