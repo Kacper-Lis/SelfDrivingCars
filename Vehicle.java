@@ -49,6 +49,15 @@ public class Vehicle
         assignRide(step);
         if (currentRide != null)
         {
+            /*
+            if (earlyStart(step))
+            {
+                targetX = currentRide.endPosX;
+                targetY = currentRide.endPosY;
+                count++;
+                System.out.println(count);
+            }
+            */
             if (currentRide.start >= step)
             {
                 targetX = currentRide.endPosX;
